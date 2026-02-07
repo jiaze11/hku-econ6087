@@ -4,7 +4,6 @@
 
 \usepackage{graphicx}
 \usepackage{outlines}
-\usepackage{subcaption}
 
 \title{Introduction}
 \author{Jiaze Li}
@@ -27,35 +26,17 @@
     \begin{columns}
         \begin{column}{0.8\textwidth}
             \begin{outline}
-                \1 Why should economists use \textbf{Python} for textual analysis?
-                    \2 Python has \alert{rich libraries} for textual analysis.
-                    \2 \alert{AI agents} are good at Python.
-                    \2 Python has \alert{clear syntax}.
+                \1<1-> In this course, we will use \textbf{Python} for textual analysis.
+                \vspace{3ex}
+                \1<2-> Why?
+                    \2<3-> Python has \alert{rich libraries} for textual analysis.
+                    \2<4-> Python has \alert{clear syntax}.
+                    \2<5-> \alert{AI agents} are good at Python.
             \end{outline}
         \end{column}
         \begin{column}{0.2\textwidth}
-            \begin{figure}
-                \centering
-                \begin{subfigure}[c]{0.45\textwidth}
-                    \centering
-                    \includegraphics[width=\textwidth]{assets/python.png}
-                \end{subfigure}
-                \hfill
-                \begin{subfigure}[c]{0.45\textwidth}
-                    \centering
-                    \includegraphics[width=\textwidth]{assets/r.png}
-                \end{subfigure}
-                \\
-                \begin{subfigure}[c]{0.45\textwidth}
-                    \centering
-                    \includegraphics[width=\textwidth]{assets/stata.png}
-                \end{subfigure}
-                \hfill
-                \begin{subfigure}[c]{0.45\textwidth}
-                    \centering
-                    \includegraphics[width=\textwidth]{assets/matlab.png}
-                \end{subfigure}
-            \end{figure}
+            \centering
+            \includegraphics[width=\textwidth]{assets/python.png}
         \end{column}
     \end{columns}
 \end{frame}
@@ -64,37 +45,29 @@
     \begin{columns}
         \begin{column}{0.8\textwidth}
             \begin{outline}
-                \1 The best way to install Python is not instaalling Python.
-                    \2 Python has \alert{rich libraries} for textual analysis.
-                    \2 \alert{AI agents} are good at Python.
-                    \2 Python has \alert{clear syntax}.
+                \1<1-> The best way to install Python is \textbf{NOT} to install Python.
+                \vspace{3ex}
+                \1<2-> The standard way to install Python is through \texttt{conda}, an open-source package and environment manager.
+                    \2<3-> I recommend \texttt{conda-forge}, a community-led channel. See \url{https://conda-forge.org/}.
+                    \2<4-> Alternatively, you can install \texttt{Anaconda}, a commercial distribution. See \url{https://www.anaconda.com/}.
+                \vspace{3ex}
+                \1<5-> If you need to use advanced modules like \texttt{torch}, consider installing Python through \texttt{uv}, a fast package manager. See \url{https://docs.astral.sh/uv/}.
             \end{outline}
         \end{column}
         \begin{column}{0.2\textwidth}
-            \begin{figure}
-                \centering
-                \begin{subfigure}[c]{0.45\textwidth}
-                    \centering
-                    \includegraphics[width=\textwidth]{assets/python.png}
-                \end{subfigure}
-                \hfill
-                \begin{subfigure}[c]{0.45\textwidth}
-                    \centering
-                    \includegraphics[width=\textwidth]{assets/anaconda.png}
-                \end{subfigure}
-                \\
-                \begin{subfigure}[c]{0.45\textwidth}
-                    \centering
-                    \includegraphics[width=\textwidth]{assets/uv.png}
-                \end{subfigure}
-                \hfill
-                \begin{subfigure}[c]{0.45\textwidth}
-                    \centering
-                    \includegraphics[width=\textwidth]{assets/matlab.png}
-                \end{subfigure}
-            \end{figure}
+            \centering
+            \includegraphics<2>[width=\textwidth]{assets/conda.png}
+            \includegraphics<3>[width=\textwidth]{assets/conda-forge.png}
+            \includegraphics<4>[width=\textwidth]{assets/anaconda.png}
+            \includegraphics<5>[width=\textwidth]{assets/uv.png}
         \end{column}
     \end{columns}
+\end{frame}
+
+\begin{frame}{Installation}
+    \begin{outline}
+        \1<1-> 
+    \end{outline}
 \end{frame}
 
 \end{document}
