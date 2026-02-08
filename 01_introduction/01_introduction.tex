@@ -1,8 +1,10 @@
 \documentclass[aspectratio=169]{beamer}
 \usetheme{metropolis}
 \setbeamertemplate{frame numbering}[fraction]
+\setbeamercovered{transparent}
 
 \usepackage{graphicx}
+\usepackage{listings}
 \usepackage{outlines}
 
 \title{Introduction}
@@ -45,29 +47,112 @@
     \begin{columns}
         \begin{column}{0.8\textwidth}
             \begin{outline}
-                \1<1-> The best way to install Python is \textbf{NOT} to install Python.
+                \1<1> The best way to install Python is \textbf{NOT} to install Python.
                 \vspace{3ex}
-                \1<2-> The standard way to install Python is through \texttt{conda}, an open-source package and environment manager.
-                    \2<3-> I recommend \texttt{conda-forge}, a community-led channel. See \url{https://conda-forge.org/}.
-                    \2<4-> Alternatively, you can install \texttt{Anaconda}, a commercial distribution. See \url{https://www.anaconda.com/}.
+                \1<2-3> The standard way to install Python is through \texttt{conda}, an open-source package and environment manager.
+                    \2<3> I recommend \texttt{conda-forge}, a community-led channel. See \url{https://conda-forge.org/}.
                 \vspace{3ex}
-                \1<5-> If you need to use advanced modules like \texttt{torch}, consider installing Python through \texttt{uv}, a fast package manager. See \url{https://docs.astral.sh/uv/}.
+                \1<4-> If you need to use advanced modules like \texttt{torch}, consider installing Python through \texttt{uv}, a fast package manager. See \url{https://docs.astral.sh/uv/}.
             \end{outline}
         \end{column}
         \begin{column}{0.2\textwidth}
             \centering
             \includegraphics<2>[width=\textwidth]{assets/conda.png}
             \includegraphics<3>[width=\textwidth]{assets/conda-forge.png}
-            \includegraphics<4>[width=\textwidth]{assets/anaconda.png}
-            \includegraphics<5>[width=\textwidth]{assets/uv.png}
+            \includegraphics<4>[width=\textwidth]{assets/uv.png}
         \end{column}
     \end{columns}
 \end{frame}
 
-\begin{frame}{Installation}
+\begin{frame}{Startup}
     \begin{outline}
-        \1<1-> 
+        \1<1-> You can check if you have \texttt{conda-forge} installed correctly by running \texttt{conda --version} in your \alert{Miniforge Prompt} (Windows) or \alert{Terminal} (macOS/Linux).
+            \2 For Windows users, if you want to use \texttt{conda} in Terminal, you should run \texttt{conda init} in Miniforge Prompt once.
+        \vspace{3ex}
+        \1<2-> Your terminal should look like these:
+            \2 \texttt{(base) C:\textbackslash Users\textbackslash Jiaze Li>}
+            \2 \texttt{(base) jiaze@jiaze-legion:\~{}\$}
     \end{outline}
+\end{frame}
+
+\begin{frame}{Environments}
+    \begin{outline}
+        \1<1-> \texttt{conda} is a package and environment manager.
+            \2<2-> Packages are collections of code that provide specific functionality.
+                \3 Examples: \texttt{pandas}, \texttt{matplotlib}, etc.
+            \2<3-> Environments are isolated spaces where you can install packages without affecting other environments.
+        \vspace{3ex}
+        \1<4-> To create a new environment, run \texttt{conda create -n <env\_name> python=<version>} in your \alert{Terminal}.
+            \2 For example, \texttt{conda create -n py312 python=3.12} will create a new environment named \texttt{py312} with Python 3.12 installed.
+        \vspace{3ex}
+        \1<5-> For many commands (not only \texttt{conda}), you may see \texttt{Proceed ([y]/n)?}. If you know what you are doing, type \texttt{y} and press \texttt{Enter}.
+        
+    \end{outline}
+\end{frame}
+
+\begin{frame}{Environments (Cont.)}
+    \begin{outline}
+        \1<1-> To list all your environments, run \texttt{conda env list}.
+            \2 \texttt{base} is the default environment that comes with \texttt{conda}. You should avoid installing packages in the \texttt{base} environment to prevent conflicts.
+        \vspace{3ex}
+        \1<2-> To activate the environment, run \texttt{conda activate <env\_name>}.
+            \2 Every time you run commands in the terminal, you should make sure you are in the correct environment.
+            \2 Once you activate the environment, your terminal should look like these:
+                \3 \texttt{(py312) C:\textbackslash Users\textbackslash Jiaze Li>}
+                \3 \texttt{(py312) jiaze@jiaze-legion:\~{}\$}
+        \vspace{3ex}
+        \1<3-> For more commands, run \texttt{conda --help} or check the official documentation at \url{https://docs.conda.io/}.
+    \end{outline}
+\end{frame}
+
+\begin{frame}{Packages}
+    \begin{outline}
+        \1<1-> To install packages in the activated environment, run \texttt{conda install <package\_name\_1> <package\_name\_2> ...}.
+            \2 For example, \texttt{conda install jupyterlab pandas} will install the \texttt{jupyterlab} and \texttt{pandas} packages in the currently activated environment.
+        \1<2-> Not all packages are available on \texttt{conda-forge}. You should check the official documentation of the package for installation instructions.
+            \2 For example, \texttt{torch} no longer supports installation through \texttt{conda} since version 2.6.0.
+        \1<3-> Recommended packages for general use:
+            \2 \texttt{jupyterlab}: Add support for .ipynb files, which are interactive notebooks that allow you to run code and see the output in the same document.
+            \2 \texttt{pandas}: A powerful library for data manipulation and analysis
+    \end{outline}
+\end{frame}
+
+\section{IDE}
+
+\begin{frame}{IDE}
+    \begin{columns}
+        \begin{column}{0.8\textwidth}
+            \begin{outline}
+                \1<1-> In principle, you can write any code in any text editor like Notepad, but an Integrated Development Environment (IDE) can provide useful features like syntax highlighting, code completion, debugging, etc.
+                \1<2> I recommend using \alert{Visual Studio Code}, an open-source code editor developed by Microsoft. See \url{https://code.visualstudio.com/}.
+                \1<3> You may also consider \alert{Cursor}, a code editor based on VS Code that integrates AI features. See \url{https://www.cursor.com/}.
+                    \2 Caveat: Although Cursor is forked from VS Code, some extensions like Data Wrangler may not work properly in Cursor.
+            \end{outline}
+        \end{column}
+        \begin{column}{0.2\textwidth}
+            \centering
+            \includegraphics<2>[width=\textwidth]{assets/vsc.png}
+            \includegraphics<3>[width=\textwidth]{assets/cursor.png}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Extensions}
+    \begin{outline}
+        \1<1-> Extensions for Python development:
+            \2 \alert{Python}: Provides rich support for Python development. See \url{https://marketplace.visualstudio.com/items?itemName=ms-python.python}.
+            \2 \alert{Jupyter}: Provides support for Jupyter notebooks. See \url{https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter}.
+        \1<2-> Recommended extensions for Python development:
+            \2 \alert{GitHub Copilot Chat}: Provides AI-powered code suggestions and explanations. See \url{https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat}.
+            \2 \alert{Data Wrangler}: Provides a visual interface for data manipulation and analysis. See \url{https://marketplace.visualstudio.com/items?itemName=ms-toolsai.datawrangler}.
+    \end{outline}
+\end{frame}
+
+\begin{frame}
+    \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth]{assets/workspace.png}
+    \end{figure}
 \end{frame}
 
 \end{document}
