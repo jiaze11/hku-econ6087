@@ -1,16 +1,43 @@
-\documentclass[aspectratio=169]{beamer}
+\documentclass[10pt, aspectratio=169]{beamer}
 \usetheme{metropolis}
 \setbeamertemplate{frame numbering}[fraction]
 \setbeamercovered{transparent}
 
+\usepackage{ctex}
+\usepackage{fontspec}
 \usepackage{graphicx}
 \usepackage{listings}
 \usepackage{outlines}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+
+\lstset{
+    language=Python,
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{deepblue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\small,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    keepspaces=true,                 
+    showstringspaces=false,
+    tabsize=2,
+    frame=single,
+    rulecolor=\color{gray!30}
+}
 
 \title{Introduction}
 \author{Jiaze Li}
 \institute{The University of Hong Kong}
-\date{\today}
+\date{February 11, 2026}
 
 \titlegraphic{\hfill\includegraphics[height=0.5in]{assets/hku.jpg}}
 
@@ -22,7 +49,7 @@
     \tableofcontents
 \end{frame}
 
-\section{Python}
+\section{Python Installation}
 
 \begin{frame}{Python}
     \begin{columns}
@@ -153,6 +180,199 @@
         \centering
         \includegraphics[width=\textwidth]{assets/workspace.png}
     \end{figure}
+\end{frame}
+
+\section{Python}
+
+\begin{frame}[fragile]{Running Your First Code}
+    \begin{outline}
+        \1<1-> Create a new file and save it with the \texttt{.ipynb} extension (Jupyter Notebook).
+        \vspace{3ex}
+        \1<2-> At the \alert{upper-right corner} of the VS Code editor, click \alert{"Select Kernel"} and choose the \texttt{conda} environment we created.
+        \vspace{3ex}
+        \1<3-> Type the following in a code cell and run it.
+        \begin{lstlisting}[language=Python]
+print("Hello, World!")
+        \end{lstlisting}
+    \end{outline}
+\end{frame}
+
+\begin{frame}[fragile]{Function}
+    \begin{outline}
+        \1<1-> The \texttt{print()} function is technically defined as follows:
+        \begin{lstlisting}[language=Python, basicstyle=\ttfamily\footnotesize]
+def print(
+    *values: object,
+    sep: str | None = " ",
+    end: str | None = "\n",
+    file: None = None,
+    flush: bool = False
+) -> None: ...
+        \end{lstlisting}
+        \1<2-> You can move your mouse cursor over the function name to see its definition.
+    \end{outline}
+\end{frame}
+
+\begin{frame}[fragile]{Type}
+    \begin{outline}
+        \1<1-> Every value is an object, and every object has a \alert{type}.
+        \1<2-> You can check the type of an object using the \texttt{type()} function.
+        \begin{lstlisting}[language=Python]
+type("Hello, World!")   # str
+type(42)                # int
+type(3.14)              # float
+type(True)              # bool
+type([1, 2, 3])         # list
+type((1, 2, 3))         # tuple
+type({"a": 1, "b": 2})  # dict
+        \end{lstlisting}
+        \1<3-> This is useful when you see \texttt{TypeError: ...} in your code, which means you are using a value of the wrong type.
+    \end{outline}
+\end{frame}
+
+\begin{frame}{\texttt{pandas}}
+    \begin{outline}
+        \1<1-> \texttt{pandas} is a powerful package for data manipulation and analysis.
+        \vspace{3ex}
+        \1<2-> It introduces two classes that can hold any type.
+            \2 \texttt{Series}, a one-dimensional labeled array (Column)
+            \2 \texttt{DataFrame}, a two-dimensional labeled data structure (Table)
+        \vspace{3ex}
+        \1<3-> \texttt{pandas} is nothing but a combination of functions written by the contributors.
+    \end{outline}
+\end{frame}
+
+\begin{frame}{}
+    \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth]{assets/pandas_github.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{pandas} (Cont.)}
+    \begin{outline}
+        \1<1-> To use any package, you need to import it first.
+        \begin{lstlisting}[language=Python]
+import pandas as pd
+        \end{lstlisting}
+        \1<2-> This line imports the \texttt{pandas} package and names it \texttt{pd} for short.
+        \vspace{3ex}
+        \1<3-> You can now use the functions in \texttt{pandas} by \texttt{pd.function\_name()}.
+            \2 For example, \texttt{pd.DataFrame()} is a function that returns a new DataFrame object.
+    \end{outline}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{pandas} (Cont.)}
+    \begin{outline}
+        \1<1-> An object also has \alert{attributes} (values) and \alert{methods} (functions).
+        \1<2-> You can check them using the \texttt{dir()} function.
+        \begin{lstlisting}[language=Python]
+df = pd.DataFrame({
+    'A': [1, 2, 3],
+    'B': [4, 5, 6]
+})
+dir(df)
+        \end{lstlisting}
+        \1<3-> To access an attribute or method, use the dot notation on the object.
+        \begin{lstlisting}[language=Python]
+df.columns  # attribute
+df.head()   # method
+        \end{lstlisting}
+    \end{outline}
+\end{frame}
+
+\begin{frame}{\texttt{pandas} (Cont.)}
+    \begin{outline}
+        \1<1-> Many packages including \texttt{pandas} have a gigantic number of functions. You don't need to know all of them.
+        \1<2-> For all packages, you can learn via the following channels:
+            \2 Official documentation (\url{https://pandas.pydata.org/docs/} for \texttt{pandas})
+            \2 AI agents
+                \3 You need to be extremely careful when using AI agents to learn packages. The core reason is that many AI agents are trained on the \alert{previous} version of a package, which can be very different from the current version.
+                \3 For example, AI agents used to suggest \texttt{pd.DataFrame.append()} for adding a new row, but this method has become deprecated since version 1.4.0.
+                \3 \texttt{pandas} just released version 3.0.0 on January 21, 2026, which has many breaking changes including introducing \texttt{pd.col()} syntax.
+            \2 Online courses and tutorials
+    \end{outline}
+\end{frame}
+
+\begin{frame}{\texttt{sklearn}}
+    \begin{outline}
+        \1<1-> \texttt{sklearn} is a powerful package for machine learning.
+        \1<2-> To install \texttt{sklearn}, run \texttt{conda install scikit-learn}.
+        \1<3-> It provides many functions for data preprocessing, model training, evaluation, etc.
+        \vspace{3ex}
+        \1<4-> For the first assignment, we will use the \texttt{CountVectorizer} (BoW), \texttt{TfidfVectorizer} (TF-IDF), and \texttt{KNeighborsClassifier} (KNN) functions in \texttt{sklearn}.
+    \end{outline}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{CountVectorizer}}
+    \begin{outline}
+        \1<1-> Whenever you see a new function, you should first check the \alert{official documentation}. \url{https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html}
+        \vspace{3ex}
+        \1<2-> Some packages also have a more detailed \alert{user guide}. \url{https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html}
+        \vspace{3ex}
+        \1<3-> \texttt{CountVectorizer} is a class with the following parameters, attributes, and methods.
+            \2 \texttt{from sklearn.feature\_extraction.text import CountVectorizer}
+            \2 Parameters: \texttt{tokenizer}, \texttt{stop\_words}, \texttt{token\_pattern}
+            \2 Methods: \texttt{fit}, \texttt{transform}, \texttt{fit\_transform}
+    \end{outline}
+\end{frame}
+
+\begin{frame}{\texttt{tokenizer}}
+    \begin{outline}
+        \1<1-> The \texttt{tokenizer} parameter is a function that takes a string as input and returns a list of tokens (words).
+        \1<2-> If you don't specify a \texttt{tokenizer}, \texttt{CountVectorizer} will use a default tokenizer that splits the string into words based on whitespace and punctuation.
+            \2 For example, the string "Hello, World!" will be tokenized into ["Hello", "World"].
+        \vspace{3ex}
+        \1<3-> You can also specify a custom \texttt{tokenizer} if you want to use a different tokenization method.
+            \2 For example, you can use \texttt{jieba} for Chinese tokenization. Then, the string \texttt{"你好，世界！"} will be tokenized into \texttt{["你好", "，", "世界", "！"]}.
+    \end{outline}
+\end{frame}
+
+\begin{frame}{\texttt{stop\_words}}
+    \begin{outline}
+        \1<1-> The \texttt{stop\_words} parameter is a list of words that will be ignored during tokenization.
+        \1<2-> If you set \texttt{stop\_words="english"}, \texttt{CountVectorizer} will use a built-in list of common English stop words (e.g., "the", "is", "in", etc.).
+        \vspace{3ex}
+        \1<3-> You can also specify your own \alert{list} of stop words if you want to ignore different words.
+            \2 For example, you can use a custom list of stop words for Chinese, including \texttt{"综上所述", "总的来看", "总的来说"}. You may refer to \url{https://github.com/goto456/stopwords/tree/master}.
+    \end{outline}
+\end{frame}
+
+\begin{frame}{\texttt{token\_pattern}}
+    \begin{outline}
+        \1<1-> The \texttt{token\_pattern} parameter is a regular expression that defines the pattern for tokenization.
+        \1<2-> The default value is \texttt{r'(?u)\textbackslash b\textbackslash w\textbackslash w+\textbackslash b'}, which means that tokens must be at least 2 characters long and consist of word characters (letters, digits, or underscores).
+        \vspace{3ex}
+        \1<3-> You can change the regular expression to include different types of tokens.
+            \2 For example, if you want to only include alphabetic tokens, you can set \texttt{token\_pattern=r'[a-zA-Z]+'}. Then, the string "Hello, World! 123" will be tokenized into ["Hello", "World"].
+            \2 If you want to include Chinese characters, you can set \texttt{token\_pattern=r'[\textbackslash u4e00-\textbackslash u9fff]+'}. Then, the string \texttt{"你好，世界！"} will be tokenized into \texttt{["你好", "世界"]}.
+    \end{outline}
+\end{frame}
+
+\begin{frame}{\texttt{fit}, \texttt{transform}, \texttt{fit\_transform}}
+    \begin{outline}
+        \1<1-> The \texttt{fit} method learns the vocabulary from the input data.
+        \1<2-> The \texttt{transform} method transforms the input data into a document-term matrix based on the learned vocabulary.
+        \1<3-> The \texttt{fit\_transform} method is a combination of \texttt{fit} and \texttt{transform}. It learns the vocabulary and transforms the input data in one step.
+        \vspace{3ex}
+        \1<4-> Since we train the model on the training data and apply the model to the test data, we should use \texttt{fit\_transform} on the training data and \texttt{transform} on the test data to avoid data leakage.
+    \end{outline}
+\end{frame}
+
+\begin{frame}{Further Reading}
+    \begin{outline}
+        \1<1-> For more details on \texttt{TfidfVectorizer}, please refer to \url{https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html} and \url{https://scikit-learn.org/stable/modules/feature_extraction.html\#tfidf}.
+        \vspace{3ex}
+        \1<2-> For more details on \texttt{KNeighborsClassifier}, please refer \url{https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html} and \url{https://scikit-learn.org/stable/modules/neighbors.html\#classification}.
+    \end{outline}
+\end{frame}
+
+\begin{frame}{AI Agents}
+    \begin{outline}
+        \1<1-> Some of the students have already submitted the first assignment with the help of AI agents.
+        \1<2-> My test on Github Copilot using the following prompt:
+            \2 ``I am working in a uv project and have already run uv add datasets pandas scikit-learn. Based on the first question in \#file:assignment\_1.tex, generate Python code for a Jupyter Notebook. The code must load the ag\_news dataset from Hugging Face using the datasets library. Provide the solution logic for the question using pandas for data manipulation.''
+    \end{outline}
 \end{frame}
 
 \end{document}
