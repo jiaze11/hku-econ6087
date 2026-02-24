@@ -1,0 +1,59 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amsfonts}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{xcolor}
+
+% Course Details
+\title{\textbf{ECON6087: Textual Analysis for Economists} \\ Assignment 2: Topic Modeling}
+\author{}
+\date{Spring 2026}
+
+\begin{document}
+
+\maketitle
+
+\section*{General Instructions}
+\begin{itemize}
+    \item \textbf{Submission:} Please submit a short report and your source code. 
+    \begin{itemize}
+        \item \textbf{Report Format:} Accepted formats include \texttt{.md}, \texttt{.doc}, \texttt{.docx}, \texttt{.pdf}, or embedded directly within a Jupyter Notebook (\texttt{.ipynb}).
+        \item \textbf{Code:} You may use any programming language.
+    \end{itemize}
+    \item \textbf{File Format:} This assignment uses \textbf{.csv} files. Ensure your environment has the necessary dependencies installed to read this format (e.g., \texttt{pandas} or \texttt{polars}).
+    \item \textbf{Reproducibility:} Ensure your code is well-commented. If your algorithms involve randomization (e.g., classifier initialization), set a fixed \textbf{random seed} to ensure your results are reproducible.
+\end{itemize}
+
+\vspace{1em}
+
+\section*{Topic Modeling}
+
+In this exercise, you will work with the People's Daily dataset.
+
+\subsection*{1.1 Data Preparation}
+Download the following files from Moodle or \href{https://www.kaggle.com/datasets/concyclics/renmindaily/data?select=RenMin_Daily_2025.csv}{Kaggle}:
+\begin{itemize}
+    \item \texttt{RenMin\_Daily\_*.csv}: News articles from People's Daily.
+
+All files contain two primary columns: \texttt{date} and \texttt{title}. You may use the optional \texttt{content} column for additional text data if your computational resources allow, but it is not required for this assignment.
+\end{itemize}
+
+\subsection*{1.2 Task Details}
+\begin{enumerate}[label=(\alph*)]
+    \item Use any topic modeling algorithm of your choice (e.g., Latent Dirichlet Allocation) to identify topics within the news articles. You may use any vectorization method (e.g., Bag of Words (BoW), Term Frequency-Inverse Document Frequency (TF-IDF), pre-trained word embeddings, etc.) to represent the text data before applying the topic modeling algorithm.
+    \item Briefly describe the topic modeling algorithm you chose. You should choose the number of topics (K) appropriately. After applying the algorithm, analyze the results to identify the main topics present in the news articles. For each topic, list the top 10 words that are most representative of that topic.
+    \item If you have limited computational resources, you may choose to use only a subset of the data (e.g. a random sample of articles). However, ensure that your sample is sufficiently large to capture the diversity of topics in the dataset.
+\end{enumerate}
+
+\subsection*{1.3 Reporting Requirements}
+Report the following:
+\begin{enumerate}
+    \item \textbf{Topics:} List the top 10 words for each of the topics identified by your topic modeling algorithm.
+    \item \textbf{Topic Distribution:} Provide a summary of the distribution of topics across the dataset (year). You can use tables, charts, or any other visualizations to illustrate this distribution effectively.
+    \item \textbf{Interpretation:} Provide a brief interpretation of the identified topics and their distribution. Discuss any trends or patterns you observe in the context of the news articles.
+\end{enumerate}
+
+\end{document}
